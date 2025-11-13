@@ -1,6 +1,7 @@
+import Login from "./Login/page";
 
 export default function Home() {
   return (
-    <p>Hola mundo desde next</p>
+    <Login />
   )
 }
