@@ -1,7 +1,7 @@
-import Login from "./Login/page";
+import Inicio from "./Inicio/page";
 
 export default function Home() {
   return (
-    <Login />
+    <Inicio />
   )
 }
