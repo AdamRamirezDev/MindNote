@@ -13,12 +13,14 @@ export default function Login(){
                     <input type="password" placeholder='Contraseña' className='w-50 h-10 rounded border-2 border-black'></input>
                     <button type="submit" className="w-50 h-10 rounded cursor-pointer bg-blue-500">Entrar</button>
                 </form>
-                <Link
-                    href="/Registro"
-                    className="text-black w-30 bg cursor-pointer"
-                >Todavia no tienes cuenta ? Registrate</Link>
+                <div className="flex gap-5">
+                    <p className="text-white font-bold">Todavia no tienes cuenta</p>
+                    <Link
+                        href="/Registro"
+                        className="text-black w-30 bg-blue-500 rounded bg cursor-pointer text-white"
+                    >Registrate</Link>
+                </div>
             </div>
         </div>
     )
-
 }
