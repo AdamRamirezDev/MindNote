@@ -2,7 +2,7 @@
 
 import { useState } from "react"
 
-export default function RegisterPage(){
+export default function Registro(){
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -22,18 +22,18 @@ export default function RegisterPage(){
     }
 
     return (
-        <main className="w-full h-screen bg-white">
-            <h1>Crear cuenta</h1>
+        <main className="w-full h-screen bg-white flex flex-col justify-center items-center">
+            <h1 className="text-black font-bold">Crear cuenta</h1>
             <form 
             onSubmit={handleSubmit}
-            className="flex flex-col gap-4 w-64">
+            className="flex flex-col justify-center items-center gap-4 w-100 h-50 border-2 bg-gray-400 border-black">
 
                 <input
                     type="email"
                     placeholder="Correo"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    className="border-2 rounded"
+                    className="w-80 border-2 rounded border-black"
                 ></input>
 
                 <input
@@ -41,12 +41,12 @@ export default function RegisterPage(){
                     placeholder="Contraseña"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
-                    className="border-2 rounded"
+                    className="w-80 border-2 rounded border-black"
                 ></input>
 
                 <button
                 type="submit"
-                className="bg-blue-500 text-whiite"
+                className="w-80 bg-blue-500 text-whiite"
                 >
                     Registrarme
                 </button>

@@ -1,5 +1,6 @@
 import Link from "next/link"
 
+
 export default function Inicio(){
 
     return (
@@ -11,7 +12,7 @@ export default function Inicio(){
                         href="/Login"
                         className="text-black w-30 cursor-pointer">Iniciar Sesion</Link>
                     <Link 
-                        href="/Login"
+                        href="/Registro"
                         className="bg-blue-500 rounded w-30 cursor-pointer">Registrarse</Link>
                 </div>           
             </nav>
@@ -24,7 +25,7 @@ export default function Inicio(){
                         href="/Login"
                         className="bg-blue-500 rounded w-30 cursor-pointer">Iniciar Sesion</Link>
                     <Link 
-                        href="/Login"
+                        href="/Registro"
                         className="bg-blue-500 rounded w-30 cursor-pointer">Registrarse</Link>
                 </div>
 
