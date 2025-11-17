@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useState } from "react";
 
 export default function Registro() {
+  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
@@ -26,6 +27,15 @@ export default function Registro() {
       <h1 className="text-black font-bold">Crear cuenta</h1>
       <div className=" justify-center items-center gap-4 w-100 h-50 border-2 bg-gray-400 border-black">
         <form onSubmit={handleSubmit} className="flex flex-col justify-center items-center gap-5 mt-5">
+          
+          <input
+            type="text"
+            placeholder="Nombre"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            className="w-80 border-2 roounded border-black"
+          ></input>
+
           <input
             type="email"
             placeholder="Correo"
