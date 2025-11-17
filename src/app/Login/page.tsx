@@ -11,7 +11,7 @@ export default function Login() {
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
 
-  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>): Promise<void> {
     e.preventDefault();
 
     const res = await signIn("credentials", {
@@ -20,12 +20,14 @@ export default function Login() {
       redirect: false,
     });
 
+    console.log("signIn response:", res);
+
     if (res?.error) {
       setMessage(res.error);
       return;
     }
 
-    router.push("/dashboard");
+    router.push("/Dashboard");
   }
 
   return (
