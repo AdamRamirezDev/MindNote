@@ -1,9 +1,6 @@
 import { NextResponse } from 'next/server';
-import { PrismaClient } from '@prisma/client';
+import prisma from '@/lib/prisma';
 import bcrypt from 'bcrypt';
-
-
-const prisma = new PrismaClient();
 
 export async function POST(req: Request){
 
@@ -37,7 +34,7 @@ export async function POST(req: Request){
         },
     });
 
-    return NextResponse.json({  message: "Usuario creado exitosamene"});
+    return NextResponse.json({  message: "Usuario creado exitosamente"});
 
     } catch ( error ){
         console.error("Error en el registro de usuario:", error);
