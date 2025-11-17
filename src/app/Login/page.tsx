@@ -1,5 +1,6 @@
+"use client";
+
 import Link from "next/link";
-import LoginButton from "../components/LoginButton";
 import { signIn } from "next-auth/react";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
@@ -10,7 +11,7 @@ export default function Login() {
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
 
-  async function handleSubmit(e) {
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
 
     const res = await signIn("credentials", {
@@ -31,7 +32,7 @@ export default function Login() {
     <div className="w-full h-screen flex flex-col justify-center items-center bg-white">
       <div className="w-100 h-100 flex flex-col justify-center items-center gap-5 rounded border-2 border-gray-800 bg-gray-500">
         <h1>Iniciar sesion</h1>
-        <form className="flex flex-col">
+        <form className="flex flex-col" onSubmit={handleSubmit}>
           <input
             type="email"
             onChange={(e) => setEmail(e.target.value)}
@@ -52,7 +53,7 @@ export default function Login() {
             Entrar
           </button>
         </form>
-        
+
         <div className="flex gap-5">
           <p className="text-white font-bold">Todavia no tienes cuenta</p>
           <Link
@@ -62,6 +63,7 @@ export default function Login() {
             Registrate
           </Link>
         </div>
+        {message && <p className="text-red-500">{message}</p>}
       </div>
     </div>
   );
