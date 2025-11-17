@@ -32,6 +32,9 @@ export default function Login() {
 
   return (
     <div className="w-full h-screen flex flex-col justify-center items-center bg-white">
+        <Link
+            href="/Inicio"
+            className="w-30 h-10 rounded border-2 text-black absolute top-0 left-0">Inicio</Link>
       <div className="w-100 h-100 flex flex-col justify-center items-center gap-5 rounded border-2 border-gray-800 bg-gray-500">
         <h1>Iniciar sesion</h1>
         <form className="flex flex-col" onSubmit={handleSubmit}>

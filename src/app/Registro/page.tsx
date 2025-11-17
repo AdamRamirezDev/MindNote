@@ -24,6 +24,9 @@ export default function Registro() {
 
   return (
     <main className="w-full h-screen bg-white flex flex-col justify-center items-center">
+      <Link
+            href="/Inicio"
+            className="w-30 h-10 rounded border-2 text-black absolute top-0 left-0">Inicio</Link>
       <h1 className="text-black font-bold">Crear cuenta</h1>
       <div className=" justify-center items-center gap-4 w-100 h-50 border-2 bg-gray-400 border-black">
         <form onSubmit={handleSubmit} className="flex flex-col justify-center items-center gap-5 mt-5">
