@@ -33,3 +33,20 @@ export async function POST(request: Request){
         return NextResponse.json({error: "Error del servidor"}, {status: 500})
     }
 }
+
+export async function GET(){
+    const session = await getServerSession(authOptions);
+
+    if(!session?.user?.id){
+        return NextResponse.json({ error: "No autorizado "}, { status: 401 });
+    }
+
+    const boards = await prisma.board.findMany({
+        where: {
+            userId: session.user.id
+        },
+        orderBy: { createdAt: "desc"}
+    });
+
+    return NextResponse.json(boards);
+}

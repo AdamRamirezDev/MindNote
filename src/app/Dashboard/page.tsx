@@ -1,8 +1,6 @@
 "use client";
 
-import { getServerSession } from "next-auth";
-import { redirect } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Modal from "../components/Modal";
 
 interface Board {
@@ -11,32 +9,58 @@ interface Board {
 }
 
 export default function Dashboard(){
-    const session =  getServerSession();
     const [open, setOpen] = useState(false);
     const [title, setTitle] = useState("");
     const [boards, setBoards] = useState<Board[]>([]);
     
+    useEffect(() => {
+        const loadBoards = async () => {
+            try {
+                const res = await fetch("/api/boards");
+                if (!res.ok) {
+                    console.error("Error loading boards:", res.status, res.statusText);
+                    return;
+                }
+                const data = await res.json();
+                if (Array.isArray(data)) {
+                    setBoards(data);
+                } else {
+                    console.error("Expected array but got:", data);
+                    setBoards([]);
+                }
+            } catch (error) {
+                console.error("Failed to load boards:", error);
+            }
+        };
+        loadBoards();
+    }, []);
+
     async function createBoard(){
+        if (!title.trim()) {
+            alert("Ingresa un nombre para el tablero");
+            return;
+        }
+
         const res = await fetch("/api/boards", {
             method: "POST",
             headers: { "Content-Type": "application/json"},
             body: JSON.stringify({ title }),
         });
     
-        if(res.ok){
-            alert("Tablero creado")
-            setTitle("");
-        } else {
-            alert("Error al cargar el tablero");
+        if (!res.ok) {
+            console.error("Error creating board:", res.status);
+            alert("Error al crear tablero");
+            return;
         }
 
-        const data = await res.json();
+        const newBoard = await res.json();
 
-        setBoards((prev) => [...prev, data]);
-        setTitle("");
+        if (newBoard && newBoard.id) {
+            setBoards((prev) => [ newBoard, ...prev]);
+            setTitle("");
+            setOpen(false);
+        }
     }
-
-    if(!session) redirect("/Login");
 
     return (
     <div className="w-full h-screen bg-white flex flex-row border-4 border-black">
@@ -63,7 +87,7 @@ export default function Dashboard(){
             <div className="w-full h-[90%] border-5 border-black p-5 flex ">
                     <div className="w-[80%] h-[60%] border-2 border-amber-600 p-5">
                         {boards.map((board) => (
-                            <div key={board.id} className="p-4 border rounded shadow">
+                            <div key={board.id} className="w-40 h-40 border rounded border-black shadow">
                                 <h3 className="font-bold">{board.title}</h3>
                             </div>
                         ))}
