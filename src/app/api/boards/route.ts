@@ -17,17 +17,19 @@ export async function POST(request: Request){
             return NextResponse.json({error: "Titulo requerido"}, {status: 400});
         }
 
-        const board = await prisma.board.create({
+        const newBoard = await prisma.board.create({
             data: {
                 title,
-                userId: session.user.id
+                user: {
+                    connect: { id: session.user.id }
+                }
             },
         });
 
-        return NextResponse.json(board, {status: 201});
+        return NextResponse.json(newBoard);
+
     } catch( error ){
         console.log("Error creado Board: ", error)
         return NextResponse.json({error: "Error del servidor"}, {status: 500})
-
     }
 }
