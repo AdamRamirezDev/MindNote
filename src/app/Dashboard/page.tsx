@@ -5,6 +5,8 @@ export default async function Dashboard(){
     const session = await getServerSession();
     console.log("SESSION:", session);
 
+    
+
     if(!session) redirect("/Login");
 
     return (
@@ -30,7 +32,6 @@ export default async function Dashboard(){
                     
             </div>            
         </div>
-
     </div>
     )
 }
