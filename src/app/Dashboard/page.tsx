@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Modal from "../components/Modal";
+import Link from "next/link";
 
 interface Board {
     id: string;
@@ -87,8 +88,14 @@ export default function Dashboard(){
             <div className="w-full h-[90%] border-5 border-black p-5 flex ">
                     <div className="w-[80%] h-[60%] border-2 border-amber-600 p-5">
                         {boards.map((board) => (
-                            <div key={board.id} className="w-40 h-40 border rounded border-black shadow">
+                            <div key={board.id} className="w-40 h-40 border rounded border-black shadow cursor-pointer">
+                                <Link
+                                    href={`/boards/${board.id}`}
+                                    key={board.id}
+                                    className="w-40 h-40 rounded"
+                                >
                                 <h3 className="font-bold">{board.title}</h3>
+                                </Link>
                             </div>
                         ))}
                     </div>
